@@ -42,7 +42,7 @@ def get_book_info():
 
 
 def get_book_id():
-    """ Ask for ID, validate to ensure is positive integer
+    """ Ask for ID, validate to ensure it is  positive integer
     :returns: the ID value """
     while True:
         try:
