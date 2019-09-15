@@ -18,6 +18,8 @@ class Book:
 
 
     def save(self):
+        """This checks if the book is already in the database, then it 
+        either adds the book if it doesn't exist or updates the existing book with any new information."""
         if self.id:
             self.bookstore._update_book(self)
         else:
