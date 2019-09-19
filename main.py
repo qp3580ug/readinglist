@@ -26,6 +26,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete Book',delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -60,14 +61,29 @@ def search_book():
 def change_read():
 
     book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-    book.save()
-    
-
+    book = store.get_book_by_id(book_id)
+    if book is not None:
+        new_read = ui.get_read_value()
+        book.read = new_read
+        book.save()
+        if new_read is False:
+            print("You have not read "+book.title)
+        else:
+            print("You have read "+book.title+" by "+book.author)
+    # fixing function to only progress if we get a book value back
+    #adding confirmation for if the book was read or not
 def quit_program():
     ui.message('Thanks and bye!')
+
+def delete_book():
+    book_id = ui.ask_question('Enter the book ID')
+    try:
+        store.delete_book(int(book_id))
+    except:
+        print("Error: Book Not Found")
+
+
+
 
 
 if __name__ == '__main__':
