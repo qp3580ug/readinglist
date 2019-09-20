@@ -76,9 +76,10 @@ def quit_program():
     ui.message('Thanks and bye!')
 
 def delete_book():
-    book_id = ui.ask_question('Enter the book ID')
+    book_id = ui.ask_question('Enter the book ID: ')
+    book = store.get_book_by_id(book_id)
     try:
-        store.delete_book(int(book_id))
+        store.delete_book(book)
     except:
         print("Error: Book Not Found")
 
